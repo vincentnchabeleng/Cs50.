@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>Which of the followin is a supervised learning algorithm?</h3>
+                <button id="option1">K-means clustering</button>
+                <button id="option2">Decision tree</button>
+                <button id="option3">Apriori algorithm</button>
+                <button id="option4">K-nearest neighbors</button>
+                <p id="multiple-choice-result"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>A column is a  _________ representation of data.</h3>
+                <input type="text" id="free-response-answer">
+                <button id="submit-answer">Submit</button>
+                <p id="free-response-result"></p>
+            </div>
+        </div>
+        <script>
+            document.getElementById('option1').addEventListener('click', function() {
+                resetColours();
+                checkAnswer('option1', 'multiple-choice-result', false);
+            });
+
+            document.getElementById('option2').addEventListener('click', function() {
+                resetColours();
+                checkAnswer('option2', 'multiple-choice-result', true);
+            });
+
+            document.getElementById('option3').addEventListener('click', function() {
+                resetColours();
+                checkAnswer('option3', 'multiple-choice-result', false);
+            });
+
+            document.getElementById('option4').addEventListener('click', function() {
+                resetColours();
+                checkAnswer('option4', 'multiple-choice-result', false);
+            });
+
+            document.getElementById('submit-answer').addEventListener('click', function() {
+                const userAnswer = document.getElementById('free-response-answer').value.toLowerCase();
+                const correctAnswer = 'vertical';
+
+
+                if (userAnswer === correctAnswer) {
+                    document.getElementById('free-response-answer').style.backgroundColor = 'lightgreen';
+                    document.getElementById('free-response-result').innerText = 'Correct!';
+                } else {
+                    document.getElementById('free-response-answer').style.backgroundColor = 'lightcoral';
+                    document.getElementById('free-response-result').innerText = 'Incorrect';
+                }
+
+                setTimeout(function() {
+                    document.getElementById('free-response-answer').style.backgroundColor = 'white';
+                    document.getElementById('free-response-result').innerText = '';
+                }, 3000);
+            });
+
+            function checkAnswer(optionId, resultId, isCorrect) {
+                const selectedOption = document.getElementById(optionId);
+                if (isCorrect) {
+                    selectedOption.style.backgroundColor = 'lightgreen';
+                    document.getElementById(resultId).innerText = 'Correct!';
+                } else {
+                    selectedOption.style.backgroundColor = 'lightcoral';
+                    document.getElementById(resultId).innerText = 'Incorrect';
+                }
+            }
+
+            function resetColours() {
+                document.getElementById('option1').style.backgroundColor = '#d9edff';
+                document.getElementById('option2').style.backgroundColor = '#d9edff';
+                document.getElementById('option3').style.backgroundColor = '#d9edff';
+                document.getElementById('option4').style.backgroundColor = '#d9edff';
+            }
+        </script>
+    </body>
+
+</html>

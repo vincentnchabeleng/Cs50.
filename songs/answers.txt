@@ -1,0 +1,55 @@
+-- All songs in the database.
+SELECT name
+FROM songs;
+
+-- All songs in increasing order of tempo.
+SELECT name
+FROM songs
+ORDER BY tempo ASC;
+
+-- The names of the top 5 longest songs, in descending order of length.
+SELECT name
+FROM songs
+ORDER BY duration_ms DESC
+LIMIT 5;
+
+-- The names of any songs that have danceability, energy, and valence greater than 0.75.
+SELECT name
+FROM songs
+WHERE danceability > 0.75 AND energy > 0.75 AND valence > 0.75;
+
+-- The average energy of all the songs.
+SELECT AVG(energy)
+FROM songs;
+
+-- The names of songs that are by Post Malone.
+SELECT name
+FROM songs
+WHERE artist_id =
+(
+    SELECT id
+    FROM artists
+    WHERE name = 'Post Malone'
+);
+
+-- The average energy of songs that are by Drake
+SELECT AVG(energy)
+FROM songs
+JOIN artists ON songs.artist_id = artists.id
+WHERE artists.name = 'Drake';
+
+-- The names of songs that feature other artists.
+SELECT name
+FROM songs
+WHERE name LIKE '%feat.%';
+
+
+Analyzing the top 100 songs from 2018 in the songs.db database could characterize a listener's
+audio aura by examining attributes like energy, valence, and danceability, similar to Spotify
+Wrapped. However, this method may not fully represent the listener due to limitations: the datase
+might not reflect current preferences, relying solely on top songs may miss their entire music
+taste, and interpreting the aura solely on musical features lacks context.
+
+Improvements include using recent data, analyzing a broader music library, considering individual
+preferences, and implementing a feedback mechanism for continuous refinement.
+These enhancements aim to create a more accurate and personalized audio aura depiction.
