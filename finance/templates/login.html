@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+<!-- Extends the base layout -->
+
+{% block title %}
+    Log In
+{% endblock %}
+<!-- Sets the title of the page to "Log In" -->
+
+{% block main %}
+<!-- Defines the main content block -->
+
+<h1 class="my-4">Log In</h1>
+<!-- Heading for the login form -->
+
+    <form action="/login" method="post">
+    <!-- Login form with action set to "/login" and method as POST -->
+
+        <div class="mb-3">
+        <!-- Form group for username -->
+
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
+            <!-- Username input field -->
+
+        </div>
+        <!-- End of username form group -->
+
+        <div class="mb-3">
+        <!-- Form group for password -->
+
+            <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">
+            <!-- Password input field -->
+
+        </div>
+        <!-- End of password form group -->
+
+        <button class="btn btn-primary" type="submit">Log In</button>
+        <!-- Submit button for the login form -->
+
+    </form>
+    <!-- End of login form -->
+
+{% endblock %}
+<!-- End of main content block -->

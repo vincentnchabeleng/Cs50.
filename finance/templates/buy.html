@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buy Stock
+{% endblock %}
+
+{% block main %}
+<h1 class="my-4">Buy Stock</h1>
+<form action="/buy" method="post">
+    <div class="mb-3">
+        <!-- Input field for entering the stock symbol -->
+        <input type="text" autocomplete="off" autofocus name="symbol" placeholder="Symbol" class="form-control mx-auto w-auto" style="margin-bottom: 5px;">
+        <!-- Input field for entering the number of shares to buy -->
+        <input required autocomplete="off" type="number" name="shares" placeholder="Shares" min="0" class="form-control mx-auto w-auto">
+    </div>
+    <!-- Submit button to buy the specified number of shares -->
+    <button type="submit" class="btn btn-primary">Buy</button>
+</form>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+<!-- Extends the base layout -->
+
+{% block title %}
+Quote
+{% endblock %}
+<!-- Sets the title of the page to "Quote" -->
+
+{% block main %}
+<!-- Defines the main content block -->
+
+<h1 class="my-4">Stock Quote</h1>
+<!-- Heading for the stock quote form -->
+
+<form action="/quote" method="post">
+<!-- Stock quote form with action set to "/quote" and method as POST -->
+
+    <div class="mb-3">
+    <!-- Form group for symbol input -->
+
+        <input required autocomplete="off" autofocus type="text" name="symbol" placeholder="Symbol" class="form-control mx-auto w-auto">
+        <!-- Symbol input field -->
+
+    </div>
+    <!-- End of symbol form group -->
+
+    <button type="submit" class="btn btn-primary">Quote</button>
+    <!-- Submit button for the stock quote form -->
+
+</form>
+<!-- End of stock quote form -->
+
+{% endblock %}
+<!-- End of main content block -->

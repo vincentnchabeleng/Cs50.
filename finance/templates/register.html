@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+<!-- Extends the base layout -->
+
+{% block title %}
+Register
+{% endblock %}
+<!-- Sets the title of the page to "Register" -->
+
+{% block main %}
+<!-- Defines the main content block -->
+
+<h1 class="my-4">Sign Up</h1>
+<!-- Heading for the registration form -->
+
+<form action="/register" method="post">
+<!-- Form to register a new user with action set to "/register" and method as POST -->
+
+    <div class="mb-3">
+    <!-- Form input group for username -->
+        <input required autocomplete="off" autofocus type="text" name="username" placeholder="Username"
+            class="form-control mx-auto w-auto">
+        <!-- Input field for username -->
+    </div>
+
+    <div class="mb-3">
+    <!-- Form input group for password -->
+        <input required autocomplete="off" type="password" name="password" placeholder="Password"
+            class="form-control mx-auto w-auto">
+        <!-- Input field for password -->
+    </div>
+
+    <div class="mb-3">
+    <!-- Form input group for password confirmation -->
+        <input required autocomplete="off" type="password" name="confirmation" placeholder="Confirm password"
+            class="form-control mx-auto w-auto">
+        <!-- Input field for confirming password -->
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+    <!-- Button to submit the registration form -->
+
+</form>
+<!-- End of form -->
+
+{% endblock %}
+<!-- End of main content block -->

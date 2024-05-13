@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+<!-- Extends the base layout -->
+
+{% block title %}
+Sell
+{% endblock %}
+<!-- Sets the title of the page to "Sell" -->
+
+{% block main %}
+<!-- Defines the main content block -->
+
+<h1 class="my-4">Sell Stock</h1>
+<!-- Heading for the sell stock form -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+<!-- Using a context to get flashed messages -->
+
+  {% if messages %}
+  <!-- Checking if there are any messages to display -->
+    {% for category, message in messages %}
+    <!-- Looping through each message and category -->
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+      <!-- Displaying an alert based on the message category -->
+        {{ message }}
+        <!-- Displaying the message content -->
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <!-- Button to close the alert -->
+      </div>
+    {% endfor %}
+    <!-- End of messages loop -->
+  {% endif %}
+  <!-- End of message check -->
+{% endwith %}
+<!-- End of context usage -->
+
+<form action="/sell" method="post">
+<!-- Form to sell stocks with action set to "/sell" and method as POST -->
+
+    <div class="mb-3">
+    <!-- Form input group for selecting the stock symbol to sell -->
+        <select class="form-select mx-auto w-auto" name="symbol">
+        <!-- Dropdown select for stock symbols -->
+            <option disbled selected>symbol</option>
+            <!-- Default option for the select dropdown -->
+            {% for row in stocks %}
+            <!-- Looping through each stock symbol -->
+            <option>{{ row.symbol }}</option>
+            <!-- Adding an option for each stock symbol -->
+            {% endfor %}
+            <!-- End of stocks loop -->
+        </select>
+        <!-- End of select dropdown -->
+    </div>
+
+    <div class="mb-3">
+    <!-- Form input group for entering the number of shares to sell -->
+        <input type="number" autofocus name="shares" placeholder="Shares" min="0" autocomplete="off" class="form-control mx-auto w-auto">
+        <!-- Input field for shares to sell -->
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sell</button>
+    <!-- Button to submit the sell form -->
+
+</form>
+<!-- End of form -->
+
+{% endblock %}
+<!-- End of main content block -->

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- HTML document type declaration -->
+
+<html lang="en">
+<!-- HTML root element with language set to English -->
+
+    <head>
+        <!-- Head section containing metadata and external resources -->
+
+        <meta charset="utf-8">
+        <!-- Character encoding for UTF-8 -->
+
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <!-- Viewport settings for responsive design -->
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+        <!-- Bootstrap JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+        <!-- Favicon -->
+        <link href="/static/favicon.ico" rel="icon">
+
+        <!-- Custom CSS -->
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <!-- Title of the page -->
+        <title>C$50 Finance: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+        <!-- Body section of the page -->
+
+        <!-- Navigation bar -->
+        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+            <!-- Navbar content -->
+            <div class="container-fluid">
+                <!-- Container for navbar items -->
+                <a class="navbar-brand" href="/"><span class="blue">C</span><span class="red">$</span><span class="yellow">5</span><span class="green">0</span> <span class="red">Finance</span></a>
+                <!-- Navbar brand -->
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <!-- Navbar toggler button -->
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <!-- Navbar collapsible content -->
+                    {% if session["user_id"] %}
+                        <!-- Conditional content for logged-in users -->
+                        <ul class="navbar-nav me-auto mt-2">
+                            <!-- Navbar items for logged-in users -->
+                            <li class="nav-item"><a class="nav-link" href="/quote">Quote</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/sell">Sell</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/change_password">Change-password</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <!-- Navbar items for logged-in users -->
+                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                        </ul>
+                    {% else %}
+                        <!-- Conditional content for non-logged-in users -->
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <!-- Navbar items for non-logged-in users -->
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        <!-- Flash messages section -->
+        {% if get_flashed_messages() %}
+            <!-- Check for flashed messages -->
+            <header>
+                <!-- Header for flashed messages -->
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    <!-- Bootstrap alert message -->
+                    {{ get_flashed_messages() | join(" ") }}
+                    <!-- Display flashed messages -->
+                </div>
+            </header>
+        {% endif %}
+
+        <!-- Main content section -->
+        <main class="container py-5 text-center">
+            <!-- Main content area -->
+            {% block main %}{% endblock %}
+            <!-- Placeholder for main content -->
+        </main>
+
+        <!-- Footer section -->
+        <footer class="mb-5">
+            <!-- Footer content -->
+
+            <p class="mb-3 small text-center text-muted">
+                <!-- Paragraph with footer text -->
+                Data provided by <a href="https://finance.yahoo.com/">Yahoo</a>
+                <!-- Link to Yahoo Finance -->
+            </p>
+
+            <!-- Form for HTML validation -->
+            <form action="https://validator.w3.org/check" class="text-center" enctype="multipart/form-data" method="post" target="_blank">
+                <!-- HTML validation form -->
+                <input name="doctype" type="hidden" value="HTML5">
+                <!-- Hidden input for document type -->
+                <input name="fragment" type="hidden">
+                <!-- Hidden input for HTML fragment -->
+                <input alt="Validate" src="/static/I_heart_validator.png" type="image"> <!-- Validator image -->
+            </form>
+            <!-- Script to populate HTML fragment for validation -->
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Adapted from https://stackoverflow.com/a/10162353
+                    const html = '<!DOCTYPE ' +
+                    document.doctype.name +
+                    (document.doctype.publicId ? ' PUBLIC "' + document.doctype.publicId + '"' : '') +
+                    (!document.doctype.publicId && document.doctype.systemId ? ' SYSTEM' : '') +
+                    (document.doctype.systemId ? ' "' + document.doctype.systemId + '"' : '') +
+                    '>\n' + document.documentElement.outerHTML;
+                    document.querySelector('form[action="https://validator.w3.org/check"] > input[name="fragment"]').value = html;
+                });
+            </script>
+        </footer>
+
+    </body>
+
+</html>
